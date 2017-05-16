@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>566</width>
-    <height>581</height>
+    <width>934</width>
+    <height>711</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,39 +39,47 @@
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="pushButton">
-     <property name="text">
-      <string>PushButton</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="importOrderDataPushButton">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>导入订单数据</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListView" name="orderDataListView"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QPushButton" name="importGoodSalesTablePushButton">
+         <property name="text">
+          <string>导入宝贝销量数据</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListView" name="goodSalesTableListView"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
  <resources/>
  <connections>
-  <connection>
-   <sender>pushButton_2</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>Form</receiver>
-   <slot>buttonPushed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>22</x>
-     <y>529</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>169</x>
-     <y>210</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>barCodeLineEdit</sender>
    <signal>returnPressed()</signal>
@@ -80,7 +88,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>322</x>
-     <y>498</y>
+     <y>352</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
@@ -88,9 +96,43 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>importOrderDataPushButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Form</receiver>
+   <slot>importOrderDataButtonPushed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>45</x>
+     <y>382</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>368</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>importGoodSalesTablePushButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Form</receiver>
+   <slot>importGoodSalesDataButtonPushed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>715</x>
+     <y>382</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>927</x>
+     <y>374</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>buttonPushed()</slot>
   <slot>barCodeLineEditReturnPressed()</slot>
+  <slot>importOrderDataButtonPushed()</slot>
+  <slot>importGoodSalesDataButtonPushed()</slot>
  </slots>
 </ui>

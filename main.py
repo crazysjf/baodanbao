@@ -1,40 +1,47 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
 
-
-# 从PyQt库导入QtWidget通用窗口类
-# class mywindow(QtWidgets.QWidget):
-#     # 自己建一个mywindows类，以class开头，mywindows是自己的类名，
-#     # （QtWidgets.QWidget）是继承QtWidgets.QWidget类方法，
-#     def __init__(self):
-#         super(mywindow, self).__init__()
-#
-#
-# import sys
-#
-# app = QtWidgets.QApplication(sys.argv)
-# windows = mywindow()
-# label = QtWidgets.QLabel(windows)  # 在窗口中绑定label
-# label.setText("hello world")
-#
-# windows.show()
-# sys.exit(app.exec_())
-
-from PyQt5 import QtWidgets
 from ui import Ui_Form
+from orderData import OrderData
+from order import Order
 
+import xlwt;
+import xlrd;
+import sys;
+#import xlutils;
+from xlutils.copy import copy;
+from datetime import date,datetime;
+
+# 缺货的数据，以 款号：数量 的方式保存
+lackDict = {}
+
+orderData = OrderData()
 
 class mywindow(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(mywindow, self).__init__()
         self.setupUi(self)
-        self.pushButton.setText("按钮")
-    def buttonPushed(self):
-        print "asdf"
-    def barCodeLineEditReturnPressed(self):
-        print self.barCodeLineEdit.text()
-        self.barCodeLineEdit.clear()
 
+    # 导入订单数据
+    def importOrderDataButtonPushed(self):
+        orderDateFile = QFileDialog.getOpenFileName(self)
+        print orderDateFile
+        orderData.load(orderDateFile[0]) # orderDataFile为tupple，只取第一个元素
+
+
+    # 导入宝贝销量数据
+    def importGoodSalesDataButtonPushed(self):
+        print "ffff"
+
+    def barCodeLineEditReturnPressed(self):
+        expNum =  self.barCodeLineEdit.text()
+        self.barCodeLineEdit.clear()
+        order = orderData.findOrderByExpNum(expNum)
+        print order.skuCode
+        print order.count
 
 if __name__ == "__main__":
     import sys

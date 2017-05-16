@@ -1,0 +1,1 @@
+C:\python27\python.exe -m PyQt5.uic.pyuic %1 %2 %3 %4

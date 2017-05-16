@@ -28,8 +28,13 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(mywindow, self).__init__()
         self.setupUi(self)
+        self.pushButton.setText("按钮")
     def buttonPushed(self):
         print "asdf"
+    def barCodeLineEditReturnPressed(self):
+        print self.barCodeLineEdit.text()
+        self.barCodeLineEdit.clear()
+
 
 if __name__ == "__main__":
     import sys

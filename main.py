@@ -60,6 +60,7 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
                 else:
                     lackDict[i.skuCode] = c
             self.orderDetailLabel.setText(self.order2Text(order))
+            self.updateTableView()
         else:
             self.orderDetailLabel.setText(u"未找到单号：%s" % expNum)
         #print lackDict
@@ -70,6 +71,14 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
             s = s + "%s\t%s\n" % (i.skuCode, i.count)
         return s
 
+    def updateTableView(self):
+        self.lackDictTableWidget.clear()
+        self.lackDictTableWidget.setRowCount(len(lackDict))
+        i = 0
+        for key in lackDict.keys():
+            self.lackDictTableWidget.setItem(i, 0, QTableWidgetItem(key))
+            self.lackDictTableWidget.setItem(i, 1, QTableWidgetItem("%s" % lackDict[key]))
+            i = i+1
 
 if __name__ == "__main__":
     import sys

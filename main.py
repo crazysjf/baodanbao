@@ -24,11 +24,15 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
     def __init__(self):
         super(mywindow, self).__init__()
         self.setupUi(self)
+        # 测试阶段自动载入报表
+        file = u"D:/projects/报单宝/销量数据/5.18.xls"
+        orderData.load(file)
 
     # 导入订单数据
     def importOrderDataButtonPushed(self):
+
         orderDateFile = QFileDialog.getOpenFileName(self)
-        print orderDateFile
+        print orderDateFile[0].encode('utf-8')
         orderData.load(orderDateFile[0]) # orderDataFile为tupple，只取第一个元素
 
 
@@ -40,9 +44,15 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         expNum =  self.barCodeLineEdit.text()
         self.barCodeLineEdit.clear()
         order = orderData.findOrderByExpNum(expNum)
-        print order.skuCode
-        print order.count
-
+        items = order.items
+        for i in items:
+            print i.skuCode, i.count
+            c =  int(i.count)
+            if lackDict.has_key(i.skuCode):
+                lackDict[i.skuCode] = lackDict[i.skuCode] + c
+            else:
+                lackDict[i.skuCode] = c
+        print lackDict
 if __name__ == "__main__":
     import sys
 

@@ -46,6 +46,6 @@ class OrderData:
                         break
                     i = i+1
 
-                return Order(expNum, items)
+                return Order(expNum, row[NC_CUSTOMER_ID], items)
 
             #print n.encode('utf-8')

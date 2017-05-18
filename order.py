@@ -8,7 +8,8 @@ class Item:
 
 # 一个订单。里面可能有多个宝贝
 class Order:
-    def __init__(self, expNum, items):
+    def __init__(self, expNum, customerID, items):
         self.expNum = expNum
-        #self.customerID = customerID
+        self.customerID = customerID
+        self.customerID = customerID
         self.items = items

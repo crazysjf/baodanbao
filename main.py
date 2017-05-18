@@ -27,6 +27,10 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         # 测试阶段自动载入报表
         file = u"D:/projects/报单宝/销量数据/5.18.xls"
         orderData.load(file)
+        self.orderDetailLabel.setText("订单信息")
+        self.orderDetailLabel.adjustSize()
+        self.orderDetailLabel.setWordWrap(True)
+        self.orderDetailLabel.setAlignment(Qt.AlignTop)
 
     # 导入订单数据
     def importOrderDataButtonPushed(self):
@@ -44,18 +48,31 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         expNum =  self.barCodeLineEdit.text()
         self.barCodeLineEdit.clear()
         order = orderData.findOrderByExpNum(expNum)
-        items = order.items
-        for i in items:
-            print i.skuCode, i.count
-            c =  int(i.count)
-            if lackDict.has_key(i.skuCode):
-                lackDict[i.skuCode] = lackDict[i.skuCode] + c
-            else:
-                lackDict[i.skuCode] = c
-        print lackDict
+
+        if order != None:
+            # 找到单号
+            items = order.items
+            for i in items:
+                print i.skuCode, i.count
+                c =  int(i.count)
+                if lackDict.has_key(i.skuCode):
+                    lackDict[i.skuCode] = lackDict[i.skuCode] + c
+                else:
+                    lackDict[i.skuCode] = c
+            self.orderDetailLabel.setText(self.order2Text(order))
+        else:
+            self.orderDetailLabel.setText(u"未找到单号：%s" % expNum)
+        #print lackDict
+
+    def order2Text(self, order):
+        s = "%s %s\n\n" % (order.customerID, order.expNum)
+        for i in order.items:
+            s = s + "%s\t%s\n" % (i.skuCode, i.count)
+        return s
+
+
 if __name__ == "__main__":
     import sys
-
     app = QtWidgets.QApplication(sys.argv)
     myshow = mywindow()
     myshow.show()

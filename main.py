@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
 from ui import Ui_Form
+from multi_selection_dialog import MultiSelectionDialog
 from orderData import OrderData
 from order import Order
 
@@ -47,6 +48,8 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
     # 导入宝贝销量数据
     def importGoodSalesDataButtonPushed(self):
         print "ffff"
+        dialog = MultiSelectionDialog()
+        dialog.exec_()
 
     def barCodeLineEditReturnPressed(self):
         expNum =  self.barCodeLineEdit.text()

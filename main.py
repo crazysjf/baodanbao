@@ -25,7 +25,7 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         super(mywindow, self).__init__()
         self.setupUi(self)
         # 测试阶段自动载入报表
-        file = u"D:/projects/报单宝/销量数据/5.18.xls"
+        file = u"D:/projects/报单宝/销量数据/"
         orderData.load(file)
 
         self.orderDetailLabel.setText("订单信息")
@@ -33,13 +33,12 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         self.orderDetailLabel.setWordWrap(True)
         self.orderDetailLabel.setAlignment(Qt.AlignTop)
 
-        # 列宽自适应
+        # 列表列宽自适应
         self.lackDictTableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.lackDictTableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
 
     # 导入订单数据
     def importOrderDataButtonPushed(self):
-
         orderDateFile = QFileDialog.getOpenFileName(self)
         print orderDateFile[0].encode('utf-8')
         orderData.load(orderDateFile[0]) # orderDataFile为tupple，只取第一个元素

@@ -15,19 +15,30 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTableWidget" name="lackDictTableWidget">
-     <property name="rowCount">
-      <number>0</number>
-     </property>
-     <property name="columnCount">
-      <number>2</number>
-     </property>
-     <attribute name="horizontalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <column/>
-     <column/>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QTableWidget" name="lackDictTableWidget">
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>2</number>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>导出</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -116,8 +127,8 @@
    <slot>barCodeLineEditReturnPressed()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>322</x>
-     <y>352</y>
+     <x>363</x>
+     <y>264</y>
     </hint>
     <hint type="destinationlabel">
      <x>560</x>
@@ -132,8 +143,8 @@
    <slot>importOrderDataButtonPushed()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>45</x>
-     <y>382</y>
+     <x>56</x>
+     <y>499</y>
     </hint>
     <hint type="destinationlabel">
      <x>6</x>
@@ -148,12 +159,28 @@
    <slot>importGoodSalesDataButtonPushed()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>715</x>
-     <y>382</y>
+     <x>922</x>
+     <y>499</y>
     </hint>
     <hint type="destinationlabel">
      <x>927</x>
      <y>374</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>Form</receiver>
+   <slot>exportData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>892</x>
+     <y>126</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>824</x>
+     <y>-11</y>
     </hint>
    </hints>
   </connection>
@@ -163,5 +190,6 @@
   <slot>barCodeLineEditReturnPressed()</slot>
   <slot>importOrderDataButtonPushed()</slot>
   <slot>importGoodSalesDataButtonPushed()</slot>
+  <slot>exportData()</slot>
  </slots>
 </ui>

@@ -27,10 +27,15 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         # 测试阶段自动载入报表
         file = u"D:/projects/报单宝/销量数据/5.18.xls"
         orderData.load(file)
+
         self.orderDetailLabel.setText("订单信息")
         self.orderDetailLabel.adjustSize()
         self.orderDetailLabel.setWordWrap(True)
         self.orderDetailLabel.setAlignment(Qt.AlignTop)
+
+        # 列宽自适应
+        self.lackDictTableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.lackDictTableWidget.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
 
     # 导入订单数据
     def importOrderDataButtonPushed(self):
@@ -79,6 +84,16 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
             self.lackDictTableWidget.setItem(i, 0, QTableWidgetItem(key))
             self.lackDictTableWidget.setItem(i, 1, QTableWidgetItem("%s" % lackDict[key]))
             i = i+1
+
+    def exportData(self):
+        workbook = xlwt.Workbook()
+        sheet = workbook.add_sheet(u'报单', cell_overwrite_ok=True)
+
+
+        for i, key in enumerate(lackDict):
+            sheet.write(i,0, key)
+            sheet.write(i,1, lackDict[key])
+        workbook.save('result.xls')  # 生成结果，保存到test3.xls中，如图2.
 
 if __name__ == "__main__":
     import sys

@@ -43,6 +43,7 @@ class OrderData:
             row = self.data[i]
             n = row[NC_EXP_NUM] # 快递单号
             if expNum == n:
+                customerID = row[NC_CUSTOMER_ID]
                 items = []
                 item = Item(row[NC_SKU_CODE], row[NC_COUNT])
                 items.append(item)
@@ -59,6 +60,6 @@ class OrderData:
                         break
                     i = i+1
 
-                return Order(expNum, row[NC_CUSTOMER_ID], items)
+                return Order(expNum, customerID, items)
 
             #print n.encode('utf-8')

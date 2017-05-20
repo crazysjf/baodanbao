@@ -59,6 +59,13 @@ class mywindow(QtWidgets.QWidget, Ui_Form):
         if order != None:
             # 找到单号
             items = order.items
+
+            # 如果有多件要弹框确认
+            if len(items) > 1 :
+                dialog = MultiSelectionDialog(items)
+                if dialog.exec_():
+                    items = dialog.selectedItems
+
             for i in items:
                 print i.skuCode, i.count
                 c =  int(i.count)

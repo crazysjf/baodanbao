@@ -8,5 +8,7 @@ data = {
 num = [a for a in data]
 print num
 
-for a in data:
-    print a
+for i in range(0,10):
+    print i
+
+
